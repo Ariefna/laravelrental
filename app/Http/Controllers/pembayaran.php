@@ -68,8 +68,12 @@ class pembayaran extends Controller
         }
     }
     //master siswa
-    public function mastersiswa()
-    {
+    
+    public function sewa()
+    { 
+    }
+        public function mastersiswa()
+        {
         if (Session::get('role') == null)
         {
             return redirect('/login');

@@ -119,7 +119,8 @@ Route::post('/masterlesan/add/', 'App\Http\Controllers\pembayaran@masterlesaddak
 //     Route::post('/transaksi/bayar/', 'App\Http\Controllers\pembayaran@transaksibayaraksi');
 // Route::get('/dpembayaran/{id}', 'App\Http\Controllers\pembayaran@lpembayaransiswa');
 //     });
-Route::middleware(['customer'])->group(function () {
+Route::middleware(['yayasan'])->group(function () {
+    Route::get('/sewa/add/', 'App\Http\Controllers\pembayaran@sewa');
 Route::get('/ltagihan', 'App\Http\Controllers\pembayaran@ltagihan');
 Route::get('/lpembayaran', 'App\Http\Controllers\pembayaran@lpembayaran');
 Route::get('/dpembayaran', 'App\Http\Controllers\pembayaran@lpembayaran');
