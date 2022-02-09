@@ -74,6 +74,15 @@ class pembayaran extends Controller
         $data = DB::table('mobil')->get();
         return view('sewa.add', ['plat' => $data]);
     }
+    public function sewaaksi()
+    { 
+        $nama = $r->input('nama');
+        $plat = $r->input('plat');
+        $keterangan = $r->input('keterangan');
+        DB::statement("INSERT INTO `rental`.`mobil` (`nama`,`plat`,`keterangan`) VALUES ('".$nama."','".$plat."','".$keterangan."');");
+        return redirect()->back()
+        ->with('success', 'Data Anda Menyewa Mobil dengan plat '.$plat);
+    }
         public function mastersiswa()
         {
         if (Session::get('role') == null)
