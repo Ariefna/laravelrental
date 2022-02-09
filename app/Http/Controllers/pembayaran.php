@@ -25,10 +25,10 @@ class pembayaran extends Controller
     {
         $pass = $request->input('password');
         $username = $request->input('username');
-        $user = DB::table('master_siswa')->where('nama_siswa', $username)->where('nis', $pass)->get();
+        // $user = DB::table('master_siswa')->where('nama_siswa', $username)->where('nis', $pass)->get();
         //count ini digunakan untuk memperiksa apakah login dengan nis dan password ini ada di database atau tidak?
         //jika ada maka bernilai 1 bisa masuk, jika tidak ber nilai 0 maka tidak bisa masuk
-        if (!$user->count() && (($pass != "admin") && ($username != "administrator")) && (($pass != "yayasan123") && ($username != "yayasan")))
+        if ((($pass != "admin") && ($username != "admin")) && (($pass != "penyewa") && ($username != "penyewa")))
         {
             return redirect('/login')->with('failed', 'Maaf, username atau password salah');
         }
@@ -39,29 +39,30 @@ class pembayaran extends Controller
             if ($pass == "admin" && $username == "admin")
             {
                 $request->session()
-                    ->put('role', 'administrator');
+                    ->put('role', 'admin');
                 $request->session()
-                    ->put('nama', 'administrator');
+                    ->put('nama', 'admin');
                 return redirect('/');
             }
-            else if ($pass == "admin" && $username == "admin")
+            else if ($pass == "penyewa" && $username == "penyewa")
             {
                 $request->session()
-                    ->put('role', 'customer');
+                    ->put('role', 'penyewa');
                 $request->session()
-                    ->put('nama', 'customer');
-                return redirect('/lpembayaran');
+                    ->put('nama', 'penyewa');
+                return redirect('/transaksi');
             }
-            else if($user->count())
-            {
-                $request->session()
-                    ->put('id_siswa', $user[0]->id);
-                $request->session()
-                    ->put('role', 'siswa');
-                $request->session()
-                    ->put('nama', $user[0]->nama_siswa);
-                return redirect('/transaksi/bayar/' . $user[0]->id);
-            }else {
+            // else if($user->count())
+            // {
+            //     $request->session()
+            //         ->put('id_siswa', $user[0]->id);
+            //     $request->session()
+            //         ->put('role', 'siswa');
+            //     $request->session()
+            //         ->put('nama', $user[0]->nama_siswa);
+            //     return redirect('/transaksi/bayar/' . $user[0]->id);
+            // }
+            else {
             return redirect('/login')->with('failed', 'Maaf, username atau password salah');
             }
         }
