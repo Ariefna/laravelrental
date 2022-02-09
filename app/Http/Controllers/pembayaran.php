@@ -50,7 +50,7 @@ class pembayaran extends Controller
                     ->put('role', 'penyewa');
                 $request->session()
                     ->put('nama', 'penyewa');
-                return redirect('/transaksi');
+                return redirect('/ltagihan');
             }
             // else if($user->count())
             // {

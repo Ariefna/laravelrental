@@ -18,7 +18,7 @@ class IsYayasan
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session::get('role') == 'administrator' || Session::get('role') == 'yayasan') {
+        if (Session::get('role') == 'administrator' || Session::get('role') == 'penyewa') {
             // if (Session::get('role') == 'admin') {
                 // echo Session::get('role');
             return $next($request);
