@@ -71,6 +71,8 @@ class pembayaran extends Controller
     
     public function sewa()
     { 
+        $data = DB::table('mobil')->get();
+        return view('sewa.add', ['plat' => $data]);
     }
         public function mastersiswa()
         {
